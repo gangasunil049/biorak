@@ -2,26 +2,18 @@
   "name": "biorak",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
-    "framer-motion": "^12.36.0",
-    "lucide-react": "^0.577.0",
-    "ogl": "^1.0.11",
-    "react": "latest",
-    "react-dom": "latest",
-    "react-router-dom": "latest"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/react": "latest",
-    "@types/react-dom": "latest",
-    "@vitejs/plugin-react": "latest",
-    "gsap": "^3.14.2",
-    "vite": "latest"
+    "vite": "^5.0.0",
+    "@vitejs/plugin-react": "^4.0.0"
   }
 }
+
