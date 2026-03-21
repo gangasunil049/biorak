@@ -91,13 +91,13 @@ const About = () => {
                         <span style={{ color: '#006b3c', fontWeight: 800, fontSize: '0.85rem', letterSpacing: '4px', textTransform: 'uppercase', display: 'block', marginBottom: '1.2rem' }}>
                             OUR MISSION
                         </span>
-                        <h2 style={{ 
-                            fontSize: 'clamp(2rem, 3.5vw, 3.2rem)', 
-                            color: '#1a1a1a', 
-                            fontWeight: 900, 
-                            lineHeight: 1.1, 
-                            marginBottom: '0', 
-                            letterSpacing: '-1.5px' 
+                        <h2 style={{
+                            fontSize: 'clamp(2rem, 3.5vw, 3.2rem)',
+                            color: '#1a1a1a',
+                            fontWeight: 900,
+                            lineHeight: 1.1,
+                            marginBottom: '0',
+                            letterSpacing: '-1.5px'
                         }}>
                             Turning Waste Into <span style={{ color: '#006b3c' }}>Sustainable Value</span>
                         </h2>
@@ -105,24 +105,24 @@ const About = () => {
 
                     <div className="mission-dashboard-wrapper" style={{ display: 'grid', gridTemplateColumns: '0.85fr 1.15fr', gap: '5rem', alignItems: 'start' }}>
                         {/* Left Column: Fixed Aspect Ratio for non-stretched look */}
-                        <motion.div 
+                        <motion.div
                             initial={{ x: -60, opacity: 0 }}
                             whileInView={{ x: 0, opacity: 1 }}
                             viewport={{ once: true }}
                             style={{ position: 'relative', width: '100%' }}
                         >
-                            <div style={{ 
-                                width: '100%', 
-                                aspectRatio: '0.85', 
-                                borderRadius: '3.5rem', 
-                                overflow: 'hidden', 
+                            <div style={{
+                                width: '100%',
+                                aspectRatio: '0.85',
+                                borderRadius: '3.5rem',
+                                overflow: 'hidden',
                                 boxShadow: '0 60px 120px rgba(0,0,0,0.12)',
                                 background: '#f1f5f9'
                             }}>
-                                <img 
-                                    src={aboutPage} 
-                                    alt="Our Team and Mission" 
-                                    style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                                <img
+                                    src={aboutPage}
+                                    alt="Our Team and Mission"
+                                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                                 />
                             </div>
                         </motion.div>
@@ -130,95 +130,95 @@ const About = () => {
                         {/* Right Column: Cards + Quote (Heading moved up) */}
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
 
-                        {/* Cards Grid (3 in a row like reference) */}
-                        <div className="mission-cards-grid">
-                            {/* Card 1: Heavy Accent (Green) */}
-                            <motion.div
-                                variants={fadeInUp}
-                                initial="initial"
-                                whileInView="whileInView"
-                                className="mission-card"
-                                style={{
-                                    background: '#006b3c',
-                                    color: 'white',
-                                    boxShadow: '0 20px 40px rgba(0,107,60,0.15)'
-                                }}
-                            >
-                                <Zap size={28} />
-                                <h4 style={{ fontSize: '1.2rem', fontWeight: 800, margin: 0 }}>Waste Reduction</h4>
-                                <p style={{ fontSize: '0.9rem', lineHeight: 1.6, margin: 0, opacity: 0.9 }}>
-                                    We help food businesses and governments reduce organic waste while producing sustainable protein and organic fertilizer.
-                                </p>
-                            </motion.div>
+                            {/* Cards Grid (3 in a row like reference) */}
+                            <div className="mission-cards-grid">
+                                {/* Card 1: Heavy Accent (Green) */}
+                                <motion.div
+                                    variants={fadeInUp}
+                                    initial="initial"
+                                    whileInView="whileInView"
+                                    className="mission-card"
+                                    style={{
+                                        background: '#006b3c',
+                                        color: 'white',
+                                        boxShadow: '0 20px 40px rgba(0,107,60,0.15)'
+                                    }}
+                                >
+                                    <Zap size={28} />
+                                    <h4 style={{ fontSize: '1.2rem', fontWeight: 800, margin: 0 }}>Waste Reduction</h4>
+                                    <p style={{ fontSize: '0.9rem', lineHeight: 1.6, margin: 0, opacity: 0.9 }}>
+                                        We help food businesses and governments reduce organic waste while producing sustainable protein and organic fertilizer.
+                                    </p>
+                                </motion.div>
 
-                            {/* Card 2: Light (Precision Farming style) */}
-                            <motion.div
-                                variants={fadeInUp}
-                                initial="initial"
-                                whileInView="whileInView"
-                                transition={{ delay: 0.1 }}
-                                className="mission-card"
-                                style={{
-                                    background: 'white',
-                                    color: '#1a1a1a',
-                                    borderTop: '6px solid #006b3c'
-                                }}
-                            >
-                                <Globe size={28} style={{ color: '#006b3c' }} />
-                                <h4 style={{ fontSize: '1.2rem', fontWeight: 800, margin: 0 }}>Circular Mission</h4>
-                                <p style={{ fontSize: '0.9rem', lineHeight: 1.6, margin: 0, color: '#000000', fontWeight: 500 }}>
-                                    Turning waste into opportunity, reducing landfill impact, and creating environmentally responsible solutions for the future.
-                                </p>
-                            </motion.div>
+                                {/* Card 2: Light (Precision Farming style) */}
+                                <motion.div
+                                    variants={fadeInUp}
+                                    initial="initial"
+                                    whileInView="whileInView"
+                                    transition={{ delay: 0.1 }}
+                                    className="mission-card"
+                                    style={{
+                                        background: 'white',
+                                        color: '#1a1a1a',
+                                        borderTop: '6px solid #006b3c'
+                                    }}
+                                >
+                                    <Globe size={28} style={{ color: '#006b3c' }} />
+                                    <h4 style={{ fontSize: '1.2rem', fontWeight: 800, margin: 0 }}>Circular Mission</h4>
+                                    <p style={{ fontSize: '0.9rem', lineHeight: 1.6, margin: 0, color: '#000000', fontWeight: 500 }}>
+                                        Turning waste into opportunity, reducing landfill impact, and creating environmentally responsible solutions for the future.
+                                    </p>
+                                </motion.div>
 
-                            {/* Card 3: Light (Farming Plant style) */}
-                             <motion.div
-                                variants={fadeInUp}
-                                initial="initial"
-                                whileInView="whileInView"
-                                transition={{ delay: 0.2 }}
-                                className="mission-card"
-                                style={{
-                                    background: 'white',
-                                    color: '#1a1a1a',
-                                    borderTop: '6px solid #fbbf24'
-                                }}
-                            >
-                                <ShieldCheck size={28} style={{ color: '#fbbf24' }} />
-                                <h4 style={{ fontSize: '1.2rem', fontWeight: 800, margin: 0 }}>Local Impact</h4>
-                                <p style={{ fontSize: '0.9rem', lineHeight: 1.6, margin: 0, color: '#000000', fontWeight: 500 }}>
-                                    Empowering local farmers and organizations with tools needed for sustainable operations and economic benefits.
-                                </p>
-                            </motion.div>
+                                {/* Card 3: Light (Farming Plant style) */}
+                                <motion.div
+                                    variants={fadeInUp}
+                                    initial="initial"
+                                    whileInView="whileInView"
+                                    transition={{ delay: 0.2 }}
+                                    className="mission-card"
+                                    style={{
+                                        background: 'white',
+                                        color: '#1a1a1a',
+                                        borderTop: '6px solid #fbbf24'
+                                    }}
+                                >
+                                    <ShieldCheck size={28} style={{ color: '#fbbf24' }} />
+                                    <h4 style={{ fontSize: '1.2rem', fontWeight: 800, margin: 0 }}>Local Impact</h4>
+                                    <p style={{ fontSize: '0.9rem', lineHeight: 1.6, margin: 0, color: '#000000', fontWeight: 500 }}>
+                                        Empowering local farmers and organizations with tools needed for sustainable operations and economic benefits.
+                                    </p>
+                                </motion.div>
 
-                            {/* Card 4: Sustainable Protein */}
-                            <motion.div
-                                variants={fadeInUp}
-                                initial="initial"
-                                whileInView="whileInView"
-                                transition={{ delay: 0.3 }}
-                                className="mission-card"
-                                style={{
-                                    background: '#004225',
-                                    color: 'white',
-                                    boxShadow: '0 20px 40px rgba(0,66,37,0.15)'
-                                }}
-                            >
-                                <Leaf size={28} />
-                                <h4 style={{ fontSize: '1.2rem', fontWeight: 800, margin: 0 }}>Sustainable Protein</h4>
-                                <p style={{ fontSize: '0.9rem', lineHeight: 1.6, margin: 0, opacity: 0.9 }}>
-                                    BSFL-derived protein is a high-quality, eco-friendly alternative to traditional animal feed, supporting a more resilient food supply.
-                                </p>
-                            </motion.div>
+                                {/* Card 4: Sustainable Protein */}
+                                <motion.div
+                                    variants={fadeInUp}
+                                    initial="initial"
+                                    whileInView="whileInView"
+                                    transition={{ delay: 0.3 }}
+                                    className="mission-card"
+                                    style={{
+                                        background: '#004225',
+                                        color: 'white',
+                                        boxShadow: '0 20px 40px rgba(0,66,37,0.15)'
+                                    }}
+                                >
+                                    <Leaf size={28} />
+                                    <h4 style={{ fontSize: '1.2rem', fontWeight: 800, margin: 0 }}>Sustainable Protein</h4>
+                                    <p style={{ fontSize: '0.9rem', lineHeight: 1.6, margin: 0, opacity: 0.9 }}>
+                                        BSFL-derived protein is a high-quality, eco-friendly alternative to traditional animal feed, supporting a more resilient food supply.
+                                    </p>
+                                </motion.div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
             {/* End of Refined Dashboard Section */}
 
             {/* ── Quote Separator ── */}
-            <section className="quote-section-refine" style={{ 
+            <section className="quote-section-refine" style={{
                 background: `url(${quoteBg})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
@@ -227,47 +227,43 @@ const About = () => {
                 overflow: 'hidden'
             }}>
                 {/* Lighter Glassy overlay for better image visibility */}
-                <div style={{ 
-                    position: 'absolute', 
-                    inset: 0, 
-                    background: 'rgba(255, 255, 255, 0.3)', 
+                <div style={{
+                    position: 'absolute',
+                    inset: 0,
+                    background: 'rgba(255, 255, 255, 0.3)',
                     backdropFilter: 'blur(2px)',
-                    zIndex: 0 
+                    zIndex: 0
                 }}></div>
-                
+
                 {/* Decorative horizontal line through the middle */}
-                <div style={{ 
-                    position: 'absolute', 
-                    top: '55%', 
-                    left: '5%', 
-                    right: '5%', 
-                    height: '1px', 
-                    background: 'rgba(0, 107, 60, 0.08)', 
-                    zIndex: 1 
+                <div style={{
+                    position: 'absolute',
+                    top: '55%',
+                    left: '5%',
+                    right: '5%',
+                    height: '1px',
+                    background: 'rgba(0, 107, 60, 0.08)',
+                    zIndex: 1
                 }}></div>
-                
+
                 <div className="container" style={{ position: 'relative', zIndex: 2 }}>
                     <motion.div
                         variants={fadeInUp}
                         initial="initial"
                         whileInView="whileInView"
-                        style={{ 
-                            textAlign: 'center', 
-                            maxWidth: '900px', 
-                            margin: '0 auto', 
-                            background: 'rgba(255, 255, 255, 0.85)', 
-                            padding: '2.5rem 3.5rem',
-                            borderRadius: '2.5rem',
-                            boxShadow: '0 30px 60px rgba(0,0,0,0.05)',
-                            border: '1px solid rgba(255,255,255,0.6)'
+                        style={{
+                            textAlign: 'center',
+                            maxWidth: '900px',
+                            margin: '0 auto',
+                            padding: '2.5rem 3.5rem'
                         }}
                     >
                         <div style={{ width: '40px', height: '3px', background: '#006b3c', margin: '0 auto 1.8rem', borderRadius: '2px' }} />
-                        <p style={{ 
-                            color: '#000000', 
-                            fontSize: 'clamp(1.2rem, 2.2vw, 2rem)', 
-                            fontWeight: 800, 
-                            fontStyle: 'italic', 
+                        <p style={{
+                            color: '#000000',
+                            fontSize: 'clamp(1.2rem, 2.2vw, 2rem)',
+                            fontWeight: 800,
+                            fontStyle: 'italic',
                             lineHeight: 1.3,
                             letterSpacing: '-1px',
                             margin: 0

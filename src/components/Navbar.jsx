@@ -86,8 +86,9 @@ const Navbar = (props) => {
                 gap: '0.5rem',
                 fontSize: '1.4rem',
                 fontWeight: '800',
-                color: '#006b3c',
-                textDecoration: 'none'
+                color: scrolled ? '#006b3c' : '#ffffff',
+                textDecoration: 'none',
+                transition: 'color 0.4s ease'
               }}
             >
               <Leaf size={28} />
@@ -103,14 +104,13 @@ const Navbar = (props) => {
                   onClick={(e) => { e.preventDefault(); handleNavScroll(link.id); }}
                   style={{
                     fontWeight: '600',
-                    color: '#1a1a1a',
-                    fontSize: '0.9rem',
-                    opacity: 0.8,
+                    color: scrolled ? '#1a1a1a' : '#ffffff',
+                    fontSize: '0.95rem',
                     textDecoration: 'none',
-                    transition: 'opacity 0.2s ease'
+                    transition: 'opacity 0.2s ease, color 0.2s ease'
                   }}
                   onMouseOver={(e) => e.target.style.opacity = 1}
-                  onMouseOut={(e) => e.target.style.opacity = 0.8}
+                  onMouseOut={(e) => e.target.style.opacity = scrolled ? 0.8 : 1}
                 >
                   {link.name}
                 </a>
@@ -126,7 +126,7 @@ const Navbar = (props) => {
                   fontWeight: 700,
                   fontSize: '0.9rem',
                   textDecoration: 'none',
-                  boxShadow: '0 4px 15px rgba(0,107,60,0.25)',
+                  boxShadow: scrolled ? '0 4px 15px rgba(0,107,60,0.25)' : '0 10px 25px rgba(0,107,60,0.4)',
                   transition: 'transform 0.2s ease, box-shadow 0.2s ease'
                 }}
                 onMouseOver={(e) => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 20px rgba(0,107,60,0.3)'; }}
@@ -139,7 +139,7 @@ const Navbar = (props) => {
             {/* Mobile Toggle */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              style={{ display: 'none', background: 'none', border: 'none', color: '#1a1a1a', cursor: 'pointer' }}
+              style={{ display: 'none', background: 'none', border: 'none', color: scrolled ? '#1a1a1a' : '#ffffff', cursor: 'pointer', transition: 'color 0.4s ease' }}
               className="mobile-toggle"
             >
               {isOpen ? <X size={28} /> : <Menu size={28} />}

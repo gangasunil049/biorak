@@ -8,6 +8,7 @@ import { ShieldCheck, Recycle, Zap, ArrowRight, Settings, BarChart3, Globe, Laye
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
+                    className="tech-overlay"
                     style={{
                         position: 'fixed',
                         top: 0,
@@ -25,11 +26,39 @@ import { ShieldCheck, Recycle, Zap, ArrowRight, Settings, BarChart3, Globe, Laye
                         padding: '6rem 2rem'
                     }}
                 >
+                    <style>{`
+                        @media (max-width: 768px) {
+                            .tech-overlay {
+                                padding: 5rem 1.5rem !important;
+                            }
+                            .tech-overlay h2 {
+                                font-size: 2.22rem !important;
+                                margin-bottom: 2rem !important;
+                            }
+                            .tech-overlay p {
+                                font-size: 1rem !important;
+                                line-height: 1.6 !important;
+                                margin-bottom: 1.5rem !important;
+                                text-align: left !important;
+                            }
+                            .tech-overlay .stats-grid {
+                                padding: 1.5rem !important;
+                                margin-top: 2rem !important;
+                            }
+                            .tech-overlay .close-btn {
+                                width: 44px !important;
+                                height: 44px !important;
+                                top: 1.5rem !important;
+                                right: 1.5rem !important;
+                            }
+                        }
+                    `}</style>
                     <motion.button
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         whileHover={{ scale: 1.1, rotate: 90 }}
                         onClick={onClose}
+                        className="close-btn"
                         style={{
                             position: 'fixed',
                             top: '2rem',
@@ -48,7 +77,7 @@ import { ShieldCheck, Recycle, Zap, ArrowRight, Settings, BarChart3, Globe, Laye
                             zIndex: 10000
                         }}
                     >
-                        <X size={32} />
+                        <X size={24} />
                     </motion.button>
 
                     <div className="container" style={{ maxWidth: '900px' }}>
@@ -84,9 +113,10 @@ import { ShieldCheck, Recycle, Zap, ArrowRight, Settings, BarChart3, Globe, Laye
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 transition={{ delay: 0.8 }}
+                                className="stats-grid"
                                 style={{ marginTop: '4rem', padding: '3rem', borderRadius: '2rem', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}
                             >
-                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '2rem' }}>
+                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '2rem' }}>
                                     <div>
                                         <div style={{ color: '#10b981', fontWeight: 800, fontSize: '1.5rem', marginBottom: '0.5rem' }}>100%</div>
                                         <div style={{ color: 'white', opacity: 0.6, fontSize: '0.9rem' }}>Recyclable Aluminum</div>

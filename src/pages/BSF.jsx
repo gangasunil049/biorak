@@ -231,6 +231,15 @@ const OrganicFloat = ({ count = 6, seed = 1 }) => {
 
 
 const BSFModal = ({ isOpen, onClose }) => {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
     return (
         <AnimatePresence>
             {isOpen && (
@@ -250,20 +259,20 @@ const BSFModal = ({ isOpen, onClose }) => {
                         padding: '1.5rem'
                     }}
                 >
-                    {/* Close Button */}
                     <motion.button
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         whileHover={{ scale: 1.1, rotate: 90 }}
                         onClick={onClose}
+                        className="modal-close-btn"
                         style={{
                             position: 'fixed',
-                            top: '2rem',
-                            right: '2rem',
+                            top: '1.5rem',
+                            right: '1.5rem',
                             background: '#006b3c',
                             border: 'none',
-                            width: '50px',
-                            height: '50px',
+                            width: '44px',
+                            height: '44px',
                             borderRadius: '50%',
                             display: 'flex',
                             alignItems: 'center',
@@ -271,195 +280,255 @@ const BSFModal = ({ isOpen, onClose }) => {
                             color: 'white',
                             cursor: 'pointer',
                             boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
-                            zIndex: 10000
+                            zIndex: 10001
                         }}
                     >
-                        <X size={24} />
+                        <X size={20} />
                     </motion.button>
 
-                    <div className="container" style={{
-                        maxWidth: '1200px',
-                        width: '95%',
-                        background: 'white',
-                        borderRadius: '3.5rem',
-                        overflowY: 'auto',
-                        boxShadow: '0 60px 120px rgba(0,0,0,0.12)',
-                        position: 'relative',
-                        maxHeight: '92vh',
-                        display: 'flex'
-                    }}>
+                        <style>{`
+                            @media (max-width: 768px) {
+                                .bsf-modal-content {
+                                    grid-template-columns: 1fr !important;
+                                    min-height: auto !important;
+                                    width: 100% !important;
+                                    overflow-x: hidden !important;
+                                }
+                                .bsf-modal-left {
+                                    padding: 2.5rem 1.25rem !important;
+                                    order: 2;
+                                    width: 100% !important;
+                                    box-sizing: border-box !important;
+                                }
+                                .bsf-modal-left p {
+                                    font-size: 1rem !important;
+                                    line-height: 1.6 !important;
+                                    word-break: break-word !important;
+                                }
+                                .bsf-modal-right {
+                                    padding: 1.5rem !important;
+                                    order: 1;
+                                    min-height: 250px !important;
+                                    width: 100% !important;
+                                }
+                                .bsf-modal-badge {
+                                    left: 15px !important;
+                                    padding: 0.6rem !important;
+                                }
+                                .stats-overlay {
+                                    padding: 1rem !important;
+                                    bottom: 5% !important;
+                                    right: 5% !important;
+                                }
+                                .stats-grid-inner {
+                                    grid-template-columns: 1fr !important;
+                                    gap: 1rem !important;
+                                    padding: 1.5rem !important;
+                                }
+                                .modal-container {
+                                    border-radius: 1.5rem !important;
+                                    width: 96% !important;
+                                    max-height: 90vh !important;
+                                    margin: 0 auto !important;
+                                }
+                                .bsf-modal-left h2 {
+                                    font-size: 2rem !important;
+                                    margin-bottom: 1.5rem !important;
+                                }
+                            }
+                        `}</style>
 
-                        {/* Reference Badge */}
-                        <div className="bsf-modal-badge" style={{
-                            position: 'absolute',
-                            top: '0',
-                            left: '60px',
-                            background: '#006b3c',
-                            padding: '1.2rem',
-                            borderBottomLeftRadius: '1.5rem',
-                            borderBottomRightRadius: '1.5rem',
-                            color: 'white',
-                            zIndex: 10
+                        <div className="container modal-container" style={{
+                            maxWidth: '1200px',
+                            width: '95%',
+                            background: 'white',
+                            borderRadius: '3.5rem',
+                            overflowY: 'auto',
+                            boxShadow: '0 60px 120px rgba(0,0,0,0.12)',
+                            position: 'relative',
+                            maxHeight: '92vh',
+                            display: 'flex'
                         }}>
-                            <Leaf size={28} />
-                        </div>
 
-                        <div style={{ display: 'grid', gridTemplateColumns: 'minmax(450px, 1.2fr) 1fr', width: '100%', minHeight: '650px' }}>
-                            {/* Left Side: Content */}
-                            <motion.div
-                                initial={{ x: -50, opacity: 0 }}
-                                animate={{ x: 0, opacity: 1 }}
-                                transition={{ delay: 0.2 }}
-                                style={{ padding: '4rem 5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
-                            >
-                                <div style={{ color: '#006b3c', fontWeight: 800, fontSize: '0.9rem', letterSpacing: '4px', textTransform: 'uppercase', marginBottom: '2rem' }}>
-                                    Species Profile
-                                </div>
-                                <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 4.2rem)', color: '#1a1a1a', fontWeight: 900, lineHeight: 1, marginBottom: '2.5rem', letterSpacing: '-2px' }}>
-                                    The Genius of the <br />
-                                    <span style={{ color: '#006b3c' }}>Black Soldier Fly</span>
-                                </h2>
+                            {/* Reference Badge */}
+                            <div className="bsf-modal-badge" style={{
+                                position: 'absolute',
+                                top: '0',
+                                left: '60px',
+                                background: '#006b3c',
+                                padding: '1.2rem',
+                                borderBottomLeftRadius: '1.5rem',
+                                borderBottomRightRadius: '1.5rem',
+                                color: 'white',
+                                zIndex: 10
+                            }}>
+                                <Leaf size={28} />
+                            </div>
 
-                                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginBottom: '3rem' }}>
-                                    <p style={{ fontSize: '1.1rem', color: '#000000', lineHeight: 1.8, margin: 0, fontWeight: 500 }}>
-                                        Unlike common houseflies, Black Soldier Flies (Hermetia illucens) are clean, non-pest insects. They do not sting, bite, or transmit diseases. Their entire life purpose is built around a powerful larval stage designed to decompose organic matter at an industrial scale.
-                                    </p>
-                                    <p style={{ fontSize: '1.1rem', color: '#000000', lineHeight: 1.8, margin: 0, fontWeight: 500 }}>
-                                        At BIORAK, we harness their natural biological drive to create a truly circular waste economy—turning "trash" into life-sustaining resources. These insects are nature's ultimate recyclers, capable of consuming twice their body weight daily.
-                                    </p>
-
-                                    {/* Restored Stats Grid */}
-                                    <div style={{
-                                        display: 'grid',
-                                        gridTemplateColumns: 'repeat(3, 1fr)',
-                                        gap: '1.5rem',
-                                        marginTop: '1.5rem',
-                                        padding: '2rem',
-                                        background: '#f8fafc',
-                                        borderRadius: '2rem',
-                                        border: '1px solid rgba(0,0,0,0.05)'
-                                    }}>
-                                        <div style={{ textAlign: 'center' }}>
-                                            <div style={{ fontSize: '1.6rem', fontWeight: 900, color: '#006b3c' }}>2,000x</div>
-                                            <div style={{ fontSize: '0.7rem', color: '#1a1a1a', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: '0.3rem' }}>Weight Inc.</div>
-                                        </div>
-                                        <div style={{ textAlign: 'center' }}>
-                                            <div style={{ fontSize: '1.6rem', fontWeight: 900, color: '#006b3c' }}>24 hrs</div>
-                                            <div style={{ fontSize: '0.7rem', color: '#1a1a1a', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: '0.3rem' }}>Breakdown</div>
-                                        </div>
-                                        <div style={{ textAlign: 'center' }}>
-                                            <div style={{ fontSize: '1.6rem', fontWeight: 900, color: '#006b3c' }}>0%</div>
-                                            <div style={{ fontSize: '0.7rem', color: '#1a1a1a', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: '0.3rem' }}>Health Risk</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div style={{ display: 'flex', gap: '2.5rem', alignItems: 'center' }}>
-                                    <button
-                                        onClick={onClose}
-                                        style={{
-                                            background: '#006b3c',
-                                            color: 'white',
-                                            border: 'none',
-                                            padding: '1.2rem 4rem',
-                                            borderRadius: '100px',
-                                            fontWeight: 800,
-                                            fontSize: '1.1rem',
-                                            cursor: 'pointer',
-                                            boxShadow: '0 20px 40px rgba(0,107,60,0.25)',
-                                            transition: 'transform 0.3s ease'
-                                        }}
-                                        onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-3px)'}
-                                        onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-                                    >
-                                        LEARN MORE
-                                    </button>
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-                                        <div style={{ width: '12px', height: '12px', background: '#006b3c', borderRadius: '50%', boxShadow: '0 0 10px rgba(0,107,60,0.3)' }}></div>
-                                        <span style={{ fontWeight: 800, fontSize: '0.9rem', color: '#94a3b8', letterSpacing: '2px' }}>V2.0 BIORAK</span>
-                                    </div>
-                                </div>
-                            </motion.div>
-
-                            {/* Right Side: Large Leaf Graphic */}
-                            <motion.div
-                                initial={{ x: 50, opacity: 0 }}
-                                animate={{ x: 0, opacity: 1 }}
-                                transition={{ delay: 0.3 }}
-                                style={{
-                                    position: 'relative',
-                                    background: 'linear-gradient(to right, #f8fafc, #ffffff)',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    padding: '3rem'
-                                }}
-                            >
-                                {/* Decorative Glow behind the leaf */}
-                                <div style={{
-                                    position: 'absolute',
-                                    width: '80%',
-                                    height: '80%',
-                                    background: 'radial-gradient(circle, rgba(0, 107, 60, 0.08) 0%, transparent 70%)',
-                                    zIndex: 0
-                                }}></div>
-
-                                {/* Refined Leaf Mask Container - More visible and detailed */}
-                                <div style={{
-                                    width: '100%',
-                                    height: '100%',
-                                    maxWidth: '600px',
-                                    maxHeight: '600px',
-                                    position: 'relative',
-                                    zIndex: 1,
-                                    /* Refined Palmate Leaf Mask with distinct lobes */
-                                    maskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 100 C50 100 50 85 50 75 C65 90 85 95 100 85 C85 70 75 60 60 60 C80 60 95 55 100 35 C80 35 70 45 60 55 C60 35 70 15 50 0 C30 15 40 35 40 55 C30 45 20 35 0 35 C5 55 20 60 40 60 C25 60 15 70 0 85 C15 95 35 90 50 75 Z'/%3E%3C/svg%3E")`,
-                                    WebkitMaskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 100 C50 100 50 85 50 75 C65 90 85 95 100 85 C85 70 75 60 60 60 C80 60 95 55 100 35 C80 35 70 45 60 55 C60 35 70 15 50 0 C30 15 40 35 40 55 C30 45 20 35 0 35 C5 55 20 60 40 60 C25 60 15 70 0 85 C15 95 35 90 50 75 Z'/%3E%3C/svg%3E")`,
-                                    maskRepeat: 'no-repeat',
-                                    WebkitMaskRepeat: 'no-repeat',
-                                    maskPosition: 'center',
-                                    WebkitMaskPosition: 'center',
-                                    maskSize: 'contain',
-                                    WebkitMaskSize: 'contain'
-                                }}>
-                                    <img
-                                        src={adultFlyImg}
-                                        alt="BSF Fly inside leaf"
-                                        style={{
-                                            width: '100%',
-                                            height: '100%',
-                                            objectFit: 'contain',
-                                            transform: 'scale(1)',
-                                            transition: 'transform 0.5s ease'
-                                        }}
-                                    />
-                                </div>
-
-                                {/* Floating Stats Overlay */}
+                            <div className="bsf-modal-content" style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'minmax(450px, 1.2fr) 1fr', width: '100%', minHeight: '650px' }}>
+                                {/* Left Side: Content */}
                                 <motion.div
-                                    animate={{ y: [0, -15, 0] }}
-                                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                                    initial={{ x: -50, opacity: 0 }}
+                                    animate={{ x: 0, opacity: 1 }}
+                                    transition={{ delay: 0.2 }}
+                                    className="bsf-modal-left"
+                                    style={{ padding: '4rem 5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
+                                >
+                                    <div style={{ color: '#006b3c', fontWeight: 800, fontSize: '0.9rem', letterSpacing: '4px', textTransform: 'uppercase', marginBottom: '2rem' }}>
+                                        Species Profile
+                                    </div>
+                                    <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 4.2rem)', color: '#1a1a1a', fontWeight: 900, lineHeight: 1, marginBottom: '2.5rem', letterSpacing: '-2px' }}>
+                                        The Genius of the <br />
+                                        <span style={{ color: '#006b3c' }}>Black Soldier Fly</span>
+                                    </h2>
+
+                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginBottom: '3rem' }}>
+                                        <p style={{ fontSize: '1.1rem', color: '#000000', lineHeight: 1.8, margin: 0, fontWeight: 500 }}>
+                                            Unlike common houseflies, Black Soldier Flies (Hermetia illucens) are clean, non-pest insects. They do not sting, bite, or transmit diseases. Their entire life purpose is built around a powerful larval stage designed to decompose organic matter at an industrial scale.
+                                        </p>
+                                        <p style={{ fontSize: '1.1rem', color: '#000000', lineHeight: 1.8, margin: 0, fontWeight: 500 }}>
+                                            At BIORAK, we harness their natural biological drive to create a truly circular waste economy—turning "trash" into life-sustaining resources. These insects are nature's ultimate recyclers, capable of consuming twice their body weight daily.
+                                        </p>
+
+                                        {/* Restored Stats Grid */}
+                                        <div 
+                                            className="stats-grid-inner"
+                                            style={{
+                                                display: 'grid',
+                                                gridTemplateColumns: 'repeat(3, 1fr)',
+                                                gap: '1.5rem',
+                                                marginTop: '1.5rem',
+                                                padding: '2rem',
+                                                background: '#f8fafc',
+                                                borderRadius: '2rem',
+                                                border: '1px solid rgba(0,0,0,0.05)'
+                                            }}
+                                        >
+                                            <div style={{ textAlign: 'center' }}>
+                                                <div style={{ fontSize: '1.6rem', fontWeight: 900, color: '#006b3c' }}>2,000x</div>
+                                                <div style={{ fontSize: '0.7rem', color: '#1a1a1a', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: '0.3rem' }}>Weight Inc.</div>
+                                            </div>
+                                            <div style={{ textAlign: 'center' }}>
+                                                <div style={{ fontSize: '1.6rem', fontWeight: 900, color: '#006b3c' }}>24 hrs</div>
+                                                <div style={{ fontSize: '0.7rem', color: '#1a1a1a', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: '0.3rem' }}>Breakdown</div>
+                                            </div>
+                                            <div style={{ textAlign: 'center' }}>
+                                                <div style={{ fontSize: '1.6rem', fontWeight: 900, color: '#006b3c' }}>0%</div>
+                                                <div style={{ fontSize: '0.7rem', color: '#1a1a1a', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: '0.3rem' }}>Health Risk</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div style={{ display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                                        <button
+                                            onClick={onClose}
+                                            style={{
+                                                background: '#006b3c',
+                                                color: 'white',
+                                                border: 'none',
+                                                padding: '1.2rem 4rem',
+                                                borderRadius: '100px',
+                                                fontWeight: 800,
+                                                fontSize: '1.1rem',
+                                                cursor: 'pointer',
+                                                boxShadow: '0 20px 40px rgba(0,107,60,0.25)',
+                                                transition: 'transform 0.3s ease'
+                                            }}
+                                            onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-3px)'}
+                                            onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+                                        >
+                                            LEARN MORE
+                                        </button>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+                                            <div style={{ width: '12px', height: '12px', background: '#006b3c', borderRadius: '50%', boxShadow: '0 0 10px rgba(0,107,60,0.3)' }}></div>
+                                            <span style={{ fontWeight: 800, fontSize: '0.9rem', color: '#94a3b8', letterSpacing: '2px' }}>V2.0 BIORAK</span>
+                                        </div>
+                                    </div>
+                                </motion.div>
+
+                                {/* Right Side: Large Leaf Graphic */}
+                                <motion.div
+                                    initial={{ x: 50, opacity: 0 }}
+                                    animate={{ x: 0, opacity: 1 }}
+                                    transition={{ delay: 0.3 }}
+                                    className="bsf-modal-right"
                                     style={{
-                                        position: 'absolute',
-                                        bottom: '8%',
-                                        right: '5%',
-                                        background: 'white',
-                                        padding: '1.5rem 2.5rem',
-                                        borderRadius: '2rem',
-                                        boxShadow: '0 30px 60px rgba(0,0,0,0.1)',
+                                        position: 'relative',
+                                        background: 'linear-gradient(to right, #f8fafc, #ffffff)',
                                         display: 'flex',
                                         alignItems: 'center',
-                                        gap: '1.2rem',
-                                        zIndex: 2,
-                                        border: '1px solid rgba(0,0,0,0.05)'
+                                        justifyContent: 'center',
+                                        padding: '3rem'
                                     }}
                                 >
-                                    <div style={{ color: '#006b3c', fontWeight: 900, fontSize: '2.2rem' }}>2,000x</div>
-                                    <div style={{ color: '#1a1a1a', fontWeight: 800, fontSize: '0.9rem', lineHeight: 1.2, textTransform: 'uppercase', letterSpacing: '1px' }}>Efficiency<br />Scale</div>
+                                    {/* Decorative Glow behind the leaf */}
+                                    <div style={{
+                                        position: 'absolute',
+                                        width: '80%',
+                                        height: '80%',
+                                        background: 'radial-gradient(circle, rgba(0, 107, 60, 0.08) 0%, transparent 70%)',
+                                        zIndex: 0
+                                    }}></div>
+
+                                    {/* Refined Leaf Mask Container - More visible and detailed */}
+                                    <div style={{
+                                        width: '100%',
+                                        height: '100%',
+                                        maxWidth: '600px',
+                                        maxHeight: '600px',
+                                        position: 'relative',
+                                        zIndex: 1,
+                                        /* Refined Palmate Leaf Mask with distinct lobes */
+                                        maskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 100 C50 100 50 85 50 75 C65 90 85 95 100 85 C85 70 75 60 60 60 C80 60 95 55 100 35 C80 35 70 45 60 55 C60 35 70 15 50 0 C30 15 40 35 40 55 C30 45 20 35 0 35 C5 55 20 60 40 60 C25 60 15 70 0 85 C15 95 35 90 50 75 Z'/%3E%3C/svg%3E")`,
+                                        WebkitMaskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 100 C50 100 50 85 50 75 C65 90 85 95 100 85 C85 70 75 60 60 60 C80 60 95 55 100 35 C80 35 70 45 60 55 C60 35 70 15 50 0 C30 15 40 35 40 55 C30 45 20 35 0 35 C5 55 20 60 40 60 C25 60 15 70 0 85 C15 95 35 90 50 75 Z'/%3E%3C/svg%3E")`,
+                                        maskRepeat: 'no-repeat',
+                                        WebkitMaskRepeat: 'no-repeat',
+                                        maskPosition: 'center',
+                                        WebkitMaskPosition: 'center',
+                                        maskSize: 'contain',
+                                        WebkitMaskSize: 'contain'
+                                    }}>
+                                        <img
+                                            src={adultFlyImg}
+                                            alt="BSF Fly inside leaf"
+                                            style={{
+                                                width: '100%',
+                                                height: '100%',
+                                                objectFit: 'contain',
+                                                transform: 'scale(1)',
+                                                transition: 'transform 0.5s ease'
+                                            }}
+                                        />
+                                    </div>
+
+                                    {/* Floating Stats Overlay */}
+                                    {!isMobile && (
+                                        <motion.div
+                                            animate={{ y: [0, -15, 0] }}
+                                            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                                            className="stats-overlay"
+                                            style={{
+                                                position: 'absolute',
+                                                bottom: '8%',
+                                                right: '5%',
+                                                background: 'white',
+                                                padding: '1.5rem 2.5rem',
+                                                borderRadius: '2rem',
+                                                boxShadow: '0 30px 60px rgba(0,0,0,0.1)',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                gap: '1.2rem',
+                                                zIndex: 2,
+                                                border: '1px solid rgba(0,0,0,0.05)'
+                                            }}
+                                        >
+                                            <div style={{ color: '#006b3c', fontWeight: 900, fontSize: '2.2rem' }}>2,000x</div>
+                                            <div style={{ color: '#1a1a1a', fontWeight: 800, fontSize: '0.9rem', lineHeight: 1.2, textTransform: 'uppercase', letterSpacing: '1px' }}>Efficiency<br />Scale</div>
+                                        </motion.div>
+                                    )}
                                 </motion.div>
-                            </motion.div>
+                            </div>
                         </div>
-                    </div>
                 </motion.div>
             )}
         </AnimatePresence>
