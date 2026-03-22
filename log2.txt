@@ -1,0 +1,8 @@
+0bdb780 HEAD@{0}: pull origin main --rebase --allow-unrelated-histories (finish): returning to refs/heads/main
+0bdb780 HEAD@{1}: pull origin main --rebase --allow-unrelated-histories (start): checkout 0bdb7806fafd79824c22141cb23a5f9bbeddc8a9
+1a2f845 HEAD@{2}: rebase (finish): returning to refs/heads/main
+1a2f845 HEAD@{3}: rebase (continue): 2nd commit
+21134ad HEAD@{4}: pull origin main --rebase (start): checkout 21134adc26b2d92d3be78ffd4431e8815ef7ea17
+35916cb HEAD@{5}: commit: 2nd commit
+a82f526 HEAD@{6}: Branch: renamed refs/heads/master to refs/heads/main
+a82f526 HEAD@{8}: commit (initial): initial commit
