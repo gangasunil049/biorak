@@ -50,7 +50,7 @@ function App() {
             <div className="app">
                 <Navbar onNavigate={handleNavigate} activeSection={activeSection} />
                 <main>
-                    <Suspense fallback={null}>
+                    <Suspense fallback={<div style={{height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#006b3c', background: '#fff'}}>Loading modules...</div>}>
                         {/* On mobile, only show Home/About if NO other section is active */}
                         {(!isMobile || !activeSection) && (
                             <>

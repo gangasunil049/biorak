@@ -4,11 +4,14 @@ import { Menu, X, Leaf } from 'lucide-react';
 const Navbar = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [pastHero, setPastHero] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 30);
+      setPastHero(window.scrollY > window.innerHeight * 0.85);
     };
+    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -48,12 +51,14 @@ const Navbar = (props) => {
         width: '100%',
         zIndex: 1000,
         padding: scrolled ? '12px 24px' : '0',
-        transition: 'padding 0.4s ease',
+        transition: 'padding 0.4s ease, opacity 0.4s ease, transform 0.4s ease',
+        opacity: (pastHero || props.activeSection) ? 1 : 0,
+        transform: (pastHero || props.activeSection) ? 'translateY(0)' : 'translateY(-100%)',
         pointerEvents: 'none'
       }}>
         {/* Inner pill — this is what morphs */}
         <div style={{
-          pointerEvents: 'all',
+          pointerEvents: (pastHero || props.activeSection) ? 'all' : 'none',
           maxWidth: scrolled ? '1200px' : '100%',
           margin: '0 auto',
           background: scrolled ? 'rgba(255,255,255,0.72)' : 'transparent',
