@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import heroImage from '../assets/hero.png';
+import homePageImage from '../assets/home page.png';
 import leafPerfectHd from '../assets/leaf_perfect_hd.png';
 import bsfLarva from '../assets/bsf_larva.png';
 
@@ -44,15 +44,6 @@ const Home = () => {
                 @media (max-width: 768px) {
                     .hero-section {
                         height: 100vh !important;
-                        background: #ffffff;
-                    }
-                    .hero-video {
-                        object-fit: contain !important;
-                        height: 100% !important;
-                        width: 100% !important;
-                        background: #ffffff !important;
-                        background-color: #ffffff !important;
-                        clip-path: inset(3.5% 5%);
                     }
                 }
             `}</style>
@@ -63,6 +54,7 @@ const Home = () => {
                     position: 'relative',
                     height: '100vh',
                     display: 'flex',
+                    flexDirection: 'column',
                     alignItems: 'center',
                     justifyContent: 'center',
                     overflow: 'hidden',
@@ -70,44 +62,100 @@ const Home = () => {
                     color: '#1a1a1a'
                 }}
             >
-                {/* ── Horizontal Mask for black line ── */}
-                <div style={{
-                    position: 'absolute',
-                    top: isMobile ? '23%' : '20%',
-                    width: '100%',
-                    height: '10px',
-                    background: '#ffffff',
-                    zIndex: 1
-                }} />
-
-                {/* ── Background Video ── */}
-                <video
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    className="hero-video"
+                {/* ── Rotating Center Image ── */}
+                <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
                     style={{
                         position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'contain',
-                        zIndex: 0,
-                        background: '#ffffff',
-                        backgroundColor: '#ffffff',
-                        border: 'none',
-                        outline: 'none',
-                        clipPath: isMobile ? 'inset(3.5% 5%)' : 'none',
-                        filter: 'contrast(1.15) saturate(1.2) brightness(1.05)',
-                        transform: isMobile ? 'scale(1.0)' : 'scale(0.8)'
+                        width: isMobile ? '300px' : '500px',
+                        height: isMobile ? '300px' : '500px',
+                        zIndex: 2,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
                     }}
                 >
-                    <source src="/hero_page.mp4" type="video/mp4" />
-                </video>
+                    <img
+                        src={homePageImage}
+                        alt="Biorak Hero"
+                        style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'contain'
+                        }}
+                    />
+                </motion.div>
 
-                {/* ── Hovering Leaves & Worms ── */}
+                {/* ── Heading and Buttons (Top Anchored) ── */}
+                <div style={{
+                    position: 'relative',
+                    zIndex: 10,
+                    textAlign: 'center',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: '1.5rem',
+                    marginTop: '-15vh' // Pull up slightly to give room for the circular image
+                }}>
+                    <div style={{
+                        fontSize: isMobile ? '2.2rem' : '4.5rem',
+                        fontWeight: '800',
+                        lineHeight: '1.1',
+                        letterSpacing: '-0.02em',
+                        margin: 0,
+                        fontFamily: '"Outfit", sans-serif',
+                        textAlign: 'center'
+                    }}>
+                        <span style={{ color: '#1a1a1a' }}>Waste Is Not the End.</span>
+                        <br />
+                        <span style={{ color: '#008447' }}>It's the Beginning.</span>
+                    </div>
+
+                    <div style={{
+                        display: 'flex',
+                        gap: isMobile ? '0.8rem' : '1.2rem',
+                        marginTop: '0.5rem',
+                        justifyContent: 'center'
+                    }}>
+                        <button
+                            onClick={() => document.querySelector('a[href="#technology"]')?.click()}
+                            style={{
+                                background: '#006b3c',
+                                color: 'white',
+                                border: 'none',
+                                padding: isMobile ? '0.6rem 1.2rem' : '0.8rem 2rem',
+                                borderRadius: '9999px',
+                                fontWeight: '700',
+                                fontSize: isMobile ? '0.85rem' : '1rem',
+                                cursor: 'pointer',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '0.5rem',
+                                boxShadow: '0 8px 20px rgba(0,107,60,0.2)'
+                            }}
+                        >
+                            Our Technology <ArrowRight size={18} />
+                        </button>
+                        <button
+                            onClick={() => document.querySelector('a[href="#gallery"]')?.click()}
+                            style={{
+                                background: 'white',
+                                color: '#006b3c',
+                                border: '1.5px solid #006b3c',
+                                padding: isMobile ? '0.6rem 1.2rem' : '0.8rem 2rem',
+                                borderRadius: '9999px',
+                                fontWeight: '700',
+                                fontSize: isMobile ? '0.85rem' : '1rem',
+                                cursor: 'pointer'
+                            }}
+                        >
+                            View Gallery
+                        </button>
+                    </div>
+                </div>
+
+                {/* ── Hovering Leaves & Worms (Full Screen) ── */}
                 {floatingItems.map((item, index) => (
                     <motion.img
                         key={index}
@@ -158,131 +206,10 @@ const Home = () => {
                         </div>
                     </div>
                 )}
-
-                {/* ── Overlay Heading ── */}
-                <div style={{
-                    position: 'absolute',
-                    top: isMobile ? '20%' : '5%',
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    zIndex: 10,
-                    textAlign: 'center',
-                    width: '100%',
-                    padding: '0 20px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    gap: isMobile ? '1rem' : '1.5rem'
-                }}>
-                    <div style={{
-                        fontSize: isMobile ? '2.5rem' : '5.5rem',
-                        fontWeight: '800',
-                        lineHeight: '1.1',
-                        letterSpacing: '-0.02em',
-                        margin: 0,
-                        fontFamily: '"Outfit", sans-serif',
-                        textTransform: 'uppercase',
-                        textAlign: 'center'
-                    }}>
-                        <span style={{ color: '#1a1a1a', background: '#ffffff', display: 'inline-block', padding: '0 50px', borderRadius: '4px' }}>Waste Is Not the End.</span>
-                        <br />
-                        <span style={{ color: '#008447', background: '#ffffff', display: 'inline-block', padding: '0 50px', borderRadius: '4px' }}>It's the Beginning.</span>
-                    </div>
-
-                    {!isMobile && (
-                        <div style={{
-                            display: 'flex',
-                            gap: '1.2rem',
-                            marginTop: '1rem',
-                            justifyContent: 'center'
-                        }}>
-                            <button
-                                onClick={() => document.querySelector('a[href="#technology"]')?.click()}
-                                className="hero-btn-primary"
-                                style={{
-                                    background: '#006b3c',
-                                    color: 'white',
-                                    border: 'none',
-                                    padding: '1rem 2rem',
-                                    borderRadius: '9999px',
-                                    fontWeight: '700',
-                                    fontSize: '1.1rem',
-                                    cursor: 'pointer',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '0.6rem',
-                                    boxShadow: '0 10px 25px rgba(0,107,60,0.3)'
-                                }}
-                            >
-                                Our Technology <ArrowRight size={20} />
-                            </button>
-                            <button
-                                onClick={() => document.querySelector('a[href="#gallery"]')?.click()}
-                                style={{
-                                    background: 'white',
-                                    color: '#006b3c',
-                                    border: '2px solid #006b3c',
-                                    padding: '1rem 2rem',
-                                    borderRadius: '9999px',
-                                    fontWeight: '700',
-                                    fontSize: '1.1rem',
-                                    cursor: 'pointer'
-                                }}
-                            >
-                                View Gallery
-                            </button>
-                        </div>
-                    )}
-                </div>
-
-                {/* ── Bottom Buttons (Mobile) ── */}
-                {isMobile && (
-                    <div style={{
-                        position: 'absolute',
-                        bottom: '16%',
-                        left: '50%',
-                        transform: 'translateX(-50%)',
-                        zIndex: 15,
-                        width: '100%',
-                        display: 'flex',
-                        gap: '0.6rem',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        padding: '0 20px'
-                    }}>
-                        <button
-                            onClick={() => document.querySelector('a[href="#technology"]')?.click()}
-                            style={{
-                                background: '#006b3c',
-                                color: 'white',
-                                border: 'none',
-                                padding: '0.7rem 1.2rem',
-                                borderRadius: '9999px',
-                                fontWeight: '700',
-                                fontSize: '0.85rem',
-                                boxShadow: '0 10px 25px rgba(0,107,60,0.3)'
-                            }}
-                        >
-                            Our Technology
-                        </button>
-                        <button
-                            onClick={() => document.querySelector('a[href="#gallery"]')?.click()}
-                            style={{
-                                background: 'white',
-                                color: '#006b3c',
-                                border: '2px solid #006b3c',
-                                padding: '0.7rem 1.2rem',
-                                borderRadius: '9999px',
-                                fontWeight: '700',
-                                fontSize: '0.85rem'
-                            }}
-                        >
-                            View Gallery
-                        </button>
-                    </div>
-                )}
             </section>
         </div>
+    );
+};
     );
 };
 
