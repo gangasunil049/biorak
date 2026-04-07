@@ -8,51 +8,37 @@ import bsfLarva from '../assets/bsf_larva.png';
 const Home = () => {
     const [isMobile, setIsMobile] = React.useState(typeof window !== 'undefined' ? window.innerWidth < 768 : false);
 
-    // Significantly expanded list for denser, scattered look
+    // Exact distribution based on reference image
     const floatingItems = [
-        // Left Side
-        { src: leafPerfectHd, top: '5%', left: '8%', size: 70, delay: 0.2, rotateInit: -20 },
-        { src: bsfLarva, top: '15%', left: '16%', size: 35, delay: 0.8, rotateInit: 45 },
-        { src: leafPerfectHd, top: '25%', left: '4%', size: 60, delay: 1.1, rotateInit: 10 },
-        { src: leafPerfectHd, top: '55%', left: '5%', size: 100, delay: 0.5, rotateInit: 15 },
-        { src: bsfLarva, top: '65%', left: '12%', size: 30, delay: 1.3, rotateInit: -10 },
-        { src: bsfLarva, top: '75%', left: '18%', size: 40, delay: 1.2, rotateInit: -30 },
-        { src: leafPerfectHd, top: '88%', left: '12%', size: 85, delay: 1.5, rotateInit: -5 },
-        { src: leafPerfectHd, top: '40%', left: '10%', size: 45, delay: 0.3, rotateInit: 20 },
-        { src: bsfLarva, top: '30%', left: '25%', size: 25, delay: 0.9, rotateInit: -15 },
-        { src: leafPerfectHd, top: '10%', left: '2%', size: 55, delay: 0.7, rotateInit: -40 },
-        { src: bsfLarva, top: '50%', left: '3%', size: 20, delay: 1.4, rotateInit: 10 },
-        { src: leafPerfectHd, top: '70%', left: '7%', size: 40, delay: 0.2, rotateInit: 5 },
+        // Leaves - Left Cluster
+        { src: leafPerfectHd, top: '10%', left: '8%', size: 65, delay: 0.1, rotateInit: -15 },
+        { src: leafPerfectHd, top: '22%', left: '5%', size: 70, delay: 0.4, rotateInit: 25 },
+        { src: leafPerfectHd, top: '38%', left: '12%', size: 55, delay: 0.7, rotateInit: -10 },
+        { src: leafPerfectHd, top: '75%', left: '8%', size: 85, delay: 0.2, rotateInit: 15 },
+        { src: leafPerfectHd, top: '88%', left: '12%', size: 60, delay: 1.1, rotateInit: -20 },
         
-        // Right Side
-        { src: leafPerfectHd, top: '8%', left: '88%', size: 80, delay: 0.6, rotateInit: 35 },
-        { src: leafPerfectHd, top: '22%', left: '92%', size: 55, delay: 0.9, rotateInit: -25 },
-        { src: bsfLarva, top: '35%', left: '82%', size: 50, delay: 1.0, rotateInit: -15 },
-        { src: bsfLarva, top: '48%', left: '88%', size: 35, delay: 1.6, rotateInit: 20 },
-        { src: leafPerfectHd, top: '60%', left: '92%', size: 110, delay: 0.4, rotateInit: -45 },
-        { src: bsfLarva, top: '80%', left: '85%', size: 45, delay: 1.8, rotateInit: 60 },
-        { src: leafPerfectHd, top: '92%', left: '78%', size: 85, delay: 1.4, rotateInit: 25 },
-        { src: bsfLarva, top: '12%', left: '50%', size: 30, delay: 2.1, rotateInit: 0 },
-        { src: leafPerfectHd, top: '45%', left: '85%', size: 65, delay: 0.7, rotateInit: 10 },
-        { src: bsfLarva, top: '70%', left: '94%', size: 28, delay: 1.1, rotateInit: -20 },
-        { src: leafPerfectHd, top: '2%', left: '75%', size: 50, delay: 0.8, rotateInit: -5 },
-        { src: bsfLarva, top: '15%', left: '95%', size: 22, delay: 1.5, rotateInit: 30 },
-        { src: leafPerfectHd, top: '30%', left: '98%', size: 35, delay: 1.9, rotateInit: -15 },
+        // Leaves - Right Cluster
+        { src: leafPerfectHd, top: '8%', left: '88%', size: 55, delay: 0.3, rotateInit: 35 },
+        { src: leafPerfectHd, top: '35%', left: '92%', size: 50, delay: 1.3, rotateInit: -45 },
+        { src: leafPerfectHd, top: '55%', left: '95%', size: 45, delay: 0.6, rotateInit: 20 },
+        { src: leafPerfectHd, top: '82%', left: '92%', size: 75, delay: 0.9, rotateInit: -15 },
+        
+        // Leaves - Inner/Central
+        { src: leafPerfectHd, top: '18%', left: '25%', size: 40, delay: 0.5, rotateInit: 10 },
+        { src: leafPerfectHd, top: '22%', left: '72%', size: 42, delay: 1.2, rotateInit: 45 },
+        { src: leafPerfectHd, top: '45%', left: '32%', size: 35, delay: 0.8, rotateInit: -5 },
+        { src: leafPerfectHd, top: '68%', left: '28%', size: 50, delay: 1.4, rotateInit: 20 },
+        { src: leafPerfectHd, top: '72%', left: '75%', size: 38, delay: 0.1, rotateInit: 15 },
 
-        // Middle/Scattered Blank Spaces
-        { src: leafPerfectHd, top: '15%', left: '65%', size: 40, delay: 0.5, rotateInit: -10 },
-        { src: bsfLarva, top: '85%', left: '45%', size: 32, delay: 2.4, rotateInit: 50 },
-        { src: leafPerfectHd, top: '10%', left: '30%', size: 50, delay: 1.7, rotateInit: 15 },
-        { src: bsfLarva, top: '2%', left: '42%', size: 22, delay: 0.4, rotateInit: -40 },
-        { src: leafPerfectHd, top: '18%', left: '55%', size: 30, delay: 2.6, rotateInit: 5 },
-        { src: bsfLarva, top: '90%', left: '60%', size: 25, delay: 1.3, rotateInit: -25 },
-        { src: leafPerfectHd, top: '75%', left: '35%', size: 45, delay: 0.9, rotateInit: 12 },
-        { src: bsfLarva, top: '82%', left: '20%', size: 20, delay: 1.1, rotateInit: 35 },
-        { src: leafPerfectHd, top: '5%', left: '20%', size: 38, delay: 0.6, rotateInit: -8 },
-        { src: bsfLarva, top: '95%', left: '30%', size: 30, delay: 1.8, rotateInit: -15 },
-        { src: leafPerfectHd, top: '95%', left: '10%', size: 60, delay: 2.2, rotateInit: 40 },
-        { src: bsfLarva, top: '45%', left: '15%', size: 26, delay: 0.7, rotateInit: -5 },
-        { src: leafPerfectHd, top: '35%', left: '5%', size: 52, delay: 1.2, rotateInit: 25 },
+        // Worms (BSF Larva) - Scattered
+        { src: bsfLarva, top: '15%', left: '18%', size: 28, delay: 0.2, rotateInit: 15 },
+        { src: bsfLarva, top: '8%', left: '48%', size: 24, delay: 1.0, rotateInit: 40 },
+        { src: bsfLarva, top: '12%', left: '78%', size: 32, delay: 0.3, rotateInit: -20 },
+        { src: bsfLarva, top: '30%', left: '82%', size: 35, delay: 0.6, rotateInit: 10 },
+        { src: bsfLarva, top: '52%', left: '15%', size: 22, delay: 1.5, rotateInit: -30 },
+        { src: bsfLarva, top: '58%', left: '85%', size: 38, delay: 0.4, rotateInit: 25 },
+        { src: bsfLarva, top: '85%', left: '35%', size: 26, delay: 0.9, rotateInit: 50 },
+        { src: bsfLarva, top: '92%', left: '62%', size: 25, delay: 1.2, rotateInit: -15 },
     ];
 
     React.useEffect(() => {
@@ -88,7 +74,7 @@ const Home = () => {
                     overflow: 'hidden',
                     background: '#ffffff',
                     color: '#1a1a1a',
-                    padding: '0 20px'
+                    padding: '60px 20px 0' // Added 60px top padding to push content down
                 }}
             >
                 {/* ── Heading (Top) ── */}
@@ -100,7 +86,7 @@ const Home = () => {
                         position: 'relative',
                         zIndex: 10,
                         textAlign: 'center',
-                        marginBottom: isMobile ? '0.5rem' : '1rem'
+                        marginBottom: isMobile ? '0.5rem' : '1.5rem' // Increased margin
                     }}
                 >
                     <div style={{
@@ -117,46 +103,20 @@ const Home = () => {
                     </div>
                 </motion.div>
 
-                {/* ── Back-to-Front Entrance Center Image ── */}
-                <div style={{
-                    position: 'relative',
-                    width: isMobile ? '260px' : '440px',
-                    height: isMobile ? '260px' : '440px',
-                    zIndex: 2,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginBottom: isMobile ? '1rem' : '1.5rem'
-                }}>
-                    <motion.img
-                        src={homePageImage}
-                        alt="Biorak Hero"
-                        initial={{ scale: 0.4, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        transition={{ 
-                            duration: 1.8, 
-                            ease: "easeOut"
-                        }}
-                        style={{
-                            width: '100%',
-                            height: '100%',
-                            objectFit: 'contain'
-                        }}
-                    />
-                </div>
-
-                {/* ── Buttons (Bottom) ── */}
+                {/* ── Buttons (Middle) ── */}
                 <motion.div 
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.8, duration: 0.6 }}
+                    transition={{ delay: 1.0, duration: 0.6 }}
                     style={{
                         position: 'relative',
-                        zIndex: 10,
+                        zIndex: 20,
                         display: 'flex',
                         gap: isMobile ? '0.8rem' : '1.5rem',
                         justifyContent: 'center',
-                        alignItems: 'center'
+                        alignItems: 'center',
+                        marginBottom: isMobile ? '1.5rem' : '2.5rem', // Increased margin to push image down
+                        marginTop: isMobile ? '0.5rem' : '1rem'   // Increased margin from heading
                     }}
                 >
                     <button
@@ -173,8 +133,8 @@ const Home = () => {
                             display: 'flex',
                             alignItems: 'center',
                             gap: '0.6rem',
-                            boxShadow: '0 8px 30px rgba(0,107,60,0.25)',
-                            transition: 'transform 0.2s ease, box-shadow 0.2s ease'
+                            boxShadow: '0 8px 30px rgba(0,107,60,0.3)',
+                            transition: 'transform 0.2s ease'
                         }}
                         onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.05)'; }}
                         onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)'; }}
@@ -192,7 +152,8 @@ const Home = () => {
                             fontWeight: '700',
                             fontSize: isMobile ? '0.85rem' : '1.05rem',
                             cursor: 'pointer',
-                            transition: 'all 0.2s ease'
+                            transition: 'all 0.2s ease',
+                            boxShadow: '0 8px 20px rgba(0,0,0,0.05)'
                         }}
                         onMouseEnter={(e) => { e.currentTarget.style.background = '#f0fdf4'; }}
                         onMouseLeave={(e) => { e.currentTarget.style.background = 'white'; }}
@@ -201,64 +162,82 @@ const Home = () => {
                     </button>
                 </motion.div>
 
-                {/* ── Hovering Leaves & Worms (Full Screen) ── */}
+                {/* ── Center Image (Bottom) ── */}
+                <div style={{
+                    position: 'relative',
+                    width: isMobile ? '280px' : '460px',
+                    height: isMobile ? '280px' : '460px',
+                    zIndex: 2,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginTop: isMobile ? '1rem' : '2rem'
+                }}>
+                    <motion.img
+                        src={homePageImage}
+                        alt="Biorak Hero"
+                        initial={{ scale: 0, rotate: -720, opacity: 0 }}
+                        animate={{ scale: 1, rotate: 0, opacity: 1 }}
+                        transition={{ 
+                            duration: 3.5, 
+                            ease: [0.34, 1.56, 0.64, 1], // Bouncy back-to-front feel
+                            delay: 0.5
+                        }}
+                        style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'contain'
+                        }}
+                    />
+                </div>
+
+                {/* ── Hovering Leaves & Worms (Falling Entrance) ── */}
                 {floatingItems.map((item, index) => (
                     <motion.div
                         key={index}
-                        initial={{ y: -800, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        transition={{ duration: 2.5, delay: item.delay, ease: "easeOut" }}
+                        initial={{ y: -800, opacity: 0, rotate: item.rotateInit }}
+                        animate={{ 
+                            y: 0, 
+                            opacity: 1,
+                            transition: { 
+                                duration: 1.5, 
+                                delay: item.delay * 0.5,
+                                ease: "easeOut"
+                            }
+                        }}
                         style={{
                             position: 'absolute',
                             top: item.top,
                             left: item.left,
-                            zIndex: 5,
+                            zIndex: 1,
                             pointerEvents: 'none'
                         }}
                     >
                         <motion.img
                             src={item.src}
                             alt="floating element"
-                            initial={{ rotate: item.rotateInit }}
                             animate={{ 
-                                y: [0, 25, 0],
-                                rotate: [item.rotateInit, item.rotateInit + 12, item.rotateInit - 8, item.rotateInit]
+                                y: [0, 15, 0],
+                                rotate: [item.rotateInit, item.rotateInit + 10, item.rotateInit - 10, item.rotateInit]
                             }}
                             transition={{ 
-                                y: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: index * 0.1 },
-                                rotate: { duration: 6, repeat: Infinity, ease: "easeInOut", delay: index * 0.1 }
+                                duration: 4 + Math.random() * 2,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                                delay: 1.5 + (item.delay * 0.5) // Start after falling
                             }}
                             style={{
-                                width: isMobile ? item.size * 0.45 : item.size,
-                                mixBlendMode: 'multiply',
-                                filter: item.src === leafPerfectHd ? 'contrast(1.35) saturate(1.4)' : 'contrast(1.15) saturate(1.15)',
-                                opacity: 0.9
+                                width: isMobile ? item.size * 0.75 : item.size,
+                                border: 'none',
+                                outline: 'none',
+                                opacity: item.src === leafPerfectHd ? 0.9 : 0.85,
+                                filter: item.src === leafPerfectHd 
+                                    ? 'brightness(1.4) saturate(1.2) hue-rotate(-5deg)' 
+                                    : 'blur(0.4px)'
                             }}
                         />
                     </motion.div>
                 ))}
-
-                {/* ── Mobile Branding and Menu Overlay (Fixed Top) ── */}
-                {isMobile && (
-                    <div style={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        width: '100%',
-                        padding: '1.2rem 1.5rem',
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        zIndex: 100
-                    }}>
-                        <div style={{ fontSize: '1.4rem', fontWeight: '800', color: '#006b3c', fontFamily: '"Outfit", sans-serif' }}>BIORAK</div>
-                        <div onClick={() => document.querySelector('.mobile-toggle')?.click()} style={{ display: 'flex', flexDirection: 'column', gap: '5px', cursor: 'pointer' }}>
-                            <div style={{ width: '22px', height: '2px', background: '#1a1a1a' }}></div>
-                            <div style={{ width: '22px', height: '2px', background: '#1a1a1a' }}></div>
-                            <div style={{ width: '15px', height: '2px', background: '#1a1a1a', alignSelf: 'flex-end' }}></div>
-                        </div>
-                    </div>
-                )}
             </section>
         </div>
     );
