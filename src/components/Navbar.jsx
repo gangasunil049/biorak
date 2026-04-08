@@ -17,6 +17,7 @@ const Navbar = (props) => {
     { name: 'Home', id: 'home' },
     { name: 'About Us', id: 'about' },
     { name: 'Technology', id: 'technology' },
+    { name: 'Waste Collection', id: 'waste-collection' },
     { name: 'Gallery', id: 'gallery' },
     { name: 'Contact', id: 'contact' },
   ];

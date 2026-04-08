@@ -8,6 +8,7 @@ import Home from './pages/Home'
 const About = lazy(() => import('./pages/About'))
 const Technology = lazy(() => import('./pages/Technology'))
 const BSF = lazy(() => import('./pages/BSF'))
+const WasteCollection = lazy(() => import('./pages/WasteCollection'))
 const Gallery = lazy(() => import('./pages/Gallery'))
 const Contact = lazy(() => import('./pages/Contact'))
 
@@ -26,7 +27,7 @@ function App() {
 
     const handleNavigate = (id) => {
         if (isMobile) {
-            const hiddenSections = ['technology', 'bsf', 'gallery', 'contact'];
+            const hiddenSections = ['technology', 'bsf', 'waste-collection', 'gallery', 'contact'];
             if (hiddenSections.includes(id)) {
                 setActiveSection(id);
             } else {
@@ -65,6 +66,9 @@ function App() {
                         )}
                         {(!isMobile || activeSection === 'bsf') && (
                             <div id="bsf"><BSF /></div>
+                        )}
+                        {(!isMobile || activeSection === 'waste-collection') && (
+                            <div id="waste-collection"><WasteCollection /></div>
                         )}
                         {(!isMobile || activeSection === 'gallery') && (
                             <div id="gallery"><Gallery /></div>
