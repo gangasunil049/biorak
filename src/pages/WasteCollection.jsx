@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import cartoonTruck from '../assets/cartoon_truck.png';
 import vehiclePhoto from '../assets/trucks.png';
-import ecoGlobe from '../assets/eco_globe.png';
+import bsfFly from '../assets/bsf_fly_transparent.png';
 
 const WasteCollection = () => {
     const containerRef = useRef(null);
@@ -219,24 +219,26 @@ const WasteCollection = () => {
                     </div>
                 )}
 
-                {/* Desktop Radial/Arc Grid */}
-                <div className="radial-desktop-only" style={{ position: 'relative', maxWidth: '1200px', margin: '0 auto', height: '850px' }}>
+                <div className="radial-wrapper" style={{ 
+                    position: 'relative', 
+                    width: '100%', 
+                    overflow: 'hidden',
+                    background: '#f8f9f6',
+                    padding: '2rem 0'
+                }}>
                     <style>{`
                         .radial-desktop-only { display: block; }
+                        .radial-desktop-only.flex-container { display: flex !important; }
                         .radial-mobile-only { display: none; }
                         
                         .radial-icon-box {
-                            width: 75px;
-                            height: 75px;
+                            width: 75px; height: 75px;
                             border: 1px dashed #444;
                             border-radius: 50%;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
+                            display: flex; align-items: center; justify-content: center;
                             background: #f8f9f6;
                             margin: 0 auto 0.8rem;
-                            position: relative;
-                            z-index: 2;
+                            position: relative; z-index: 2;
                         }
                         .radial-node {
                             position: absolute;
@@ -246,119 +248,141 @@ const WasteCollection = () => {
                             z-index: 10;
                         }
 
-                        @media(max-width: 1000px) {
-                            .radial-desktop-only { display: none; }
+                        .mobile-timeline-card {
+                            background: white;
+                            border-radius: 1.2rem;
+                            padding: 1.2rem;
+                            width: 100%;
+                            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+                            border: 1px solid #eef2f0;
+                            position: relative;
+                            z-index: 5;
+                            transition: transform 0.2s ease;
+                        }
+                        .mobile-timeline-card:active {
+                            transform: scale(0.98);
+                        }
+                        .zig-zag-line {
+                            position: absolute;
+                            left: 50%;
+                            top: 0;
+                            bottom: 0;
+                            width: 2px;
+                            background: repeating-linear-gradient(to bottom, #008447, #008447 5px, transparent 5px, transparent 10px);
+                            opacity: 0.2;
+                            z-index: 1;
+                        }
+                        .mobile-icon-wrapper {
+                            width: 50px;
+                            height: 50px;
+                            border: 2px solid #008447;
+                            border-radius: 50%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            background: white;
+                            margin-bottom: 1rem;
+                        }
+
+                        @media (max-width: 900px) {
+                            .radial-desktop-only, .radial-desktop-only.flex-container { display: none !important; }
                             .radial-mobile-only { display: block; }
                         }
                     `}</style>
                     
-                    {/* Perfect geometric umbrella arc, explicitly NOT a full circle */}
-                    <svg viewBox="0 0 1200 850" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, pointerEvents: 'none' }}>
-                        {/* 
-                            Center = 600, 480. Radius = 400.
-                            Starts Left-Bottom (-145 deg/215 arc): x=272, y=709
-                            Sweeps over top to Right-Bottom (+35 deg): x=927, y=709
-                        */}
-                        <path d="M 272 709 A 400 400 0 1 1 927 709" fill="none" stroke="#666" strokeWidth="1" strokeDasharray="5,5" />
-                    </svg>
+                    <div className="radial-desktop-only" style={{ position: 'relative', width: '1200px', height: '850px', margin: '0 auto' }}>
+                        <svg viewBox="0 0 1200 850" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, pointerEvents: 'none' }}>
+                            <path d="M 272 709 A 400 400 0 1 1 927 709" fill="none" stroke="#666" strokeWidth="1" strokeDasharray="5,5" />
+                        </svg>
 
-                    {/* Center Globe/Image */}
-                    <div style={{ position: 'absolute', top: '56.4%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 5, width: '500px', height: '500px' }}>
-                        {/* Optional glow behind globe */}
-                        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '90%', height: '90%', background: 'radial-gradient(circle, rgba(0,0,0,0.2) 0%, transparent 60%)', filter: 'blur(30px)', top: '60%' }}></div>
-                        <img src={ecoGlobe} alt="Sustainability Globe" style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
+                        <div style={{ position: 'absolute', top: '56.4%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 5, width: '550px', height: '550px' }}>
+                            <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '80%', height: '60%', background: 'radial-gradient(circle, rgba(0,132,71,0.1) 0%, transparent 70%)', filter: 'blur(40px)', zIndex: -1 }}></div>
+                            <img src={bsfFly} alt="Black Soldier Fly" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                        </div>
+
+                        {[
+                            { title: 'Suitable Waste Selection', desc: 'Focusing on ideal organic inputs.', longDesc: 'Our process begins by sourcing high-quality organic matter. Kitchen waste, vegetable market scraps, and fruit peels are ideal. We strictly avoid overly oily or fatty substances to ensure optimal larval health and growth rates.', left: '28.5%', top: '20.3%', icon: <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#008447" strokeWidth="1.5"><path d="M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M4 12V8"/><path d="M4 16v-2"/><path d="M4 20v-2"/><path d="M8 12v4"/><path d="M8 20v-2"/><path d="M12 12v6"/><path d="M16 12v8"/></svg> },
+                            { title: 'Collection & Sorting', desc: 'Rigorous source-level separation.', longDesc: 'Organic waste is collected in clearly marked containers. We ensure meticulous separation from non-degradable materials like plastics and metals at the intake point to maintain the purity of our bio-conversion stream.', left: '16.6%', top: '56.4%', icon: <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#008447" strokeWidth="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> },
+                            { title: 'Hygienic Transport', desc: 'GPS-tracked, leak-proof fleet.', longDesc: 'Our fleet of modern, leak-proof vehicles ensures that waste is transported without odors or spills. Every vehicle is GPS-tracked, providing real-time visibility and ensuring timely deliveries to our processing hubs.', left: '22.6%', top: '83.4%', icon: <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#008447" strokeWidth="1.5"><path d="M5 13l4 4L19 7"/></svg> },
+                            { title: 'Mechanical Shredding', desc: 'Achieving substrate uniformity.', longDesc: 'Upon arrival, waste is shredded into small, uniform particles using industrial hammermills. This mechanical pre-processing maximizes the surface area, facilitating faster and more efficient feeding by the larval colonies.', left: '71.3%', top: '20.3%', icon: <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#008447" strokeWidth="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> },
+                            { title: 'Moisture Management', desc: 'Optimizing for larval digestion.', longDesc: 'Very wet waste (like fruit scraps) is allowed to drain or is mixed with dry additives for 1-2 days. This ensures proper moisture levels (60-70%), which are critical for the larvae to thrive during the conversion phase.', left: '83.3%', top: '56.4%', icon: <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#008447" strokeWidth="1.5"><path d="M7 20h10"/><path d="M10 20v-5L6 7V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v3l-4 8v5"/><path d="M8 12h8"/><path d="M12 9v1"/></svg> },
+                            { title: 'Storage & Bio-Feeding', desc: 'Creating high-protein value.', longDesc: 'The final stage involves feeding the prepared substrate to BSF larva colonies. Our system can reduce total waste volume by up to 90% in just two weeks, transforming "trash" into premium protein and organic fertilizer.', left: '77.2%', top: '83.4%', icon: <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#008447" strokeWidth="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg> },
+                        ].map((node, i) => (
+                            <motion.div 
+                                key={i} 
+                                className="radial-node" 
+                                style={{ top: node.top, left: node.left, cursor: 'pointer' }}
+                                onClick={() => setSelectedNode(node)}
+                            >
+                                <div className="radial-icon-box" style={{ 
+                                    transition: 'all 0.3s ease',
+                                    boxShadow: '0 5px 15px rgba(0,0,0,0.05)',
+                                    background: 'white'
+                                }}>{node.icon}</div>
+                                <div style={{ fontWeight: '800', color: '#004225', marginBottom: '0.4rem', fontSize: '1rem', lineHeight: 1.2 }}>{node.title}</div>
+                                <div style={{ color: '#666', fontSize: '0.85rem', lineHeight: 1.4 }}>{node.desc}</div>
+                                <div style={{ marginTop: '0.5rem', color: '#008447', fontSize: '0.75rem', fontWeight: 'bold' }}>Click to learn more →</div>
+                            </motion.div>
+                        ))}
                     </div>
 
-                    {/* The 6 Nodes mimicking exact reference layout but with Biorak Text */}
-                    {[
-                        { 
-                            title: 'Source Identification', 
-                            desc: 'Secure onboarding & certified bins.', 
-                            longDesc: 'Our process begins with identifying high-quality organic waste sources. We provide specialized bins and onboarding training for partners to ensure proper segregation at the source, preventing contamination early on.',
-                            left: '28.5%', top: '20.3%', 
-                            icon: <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#008447" strokeWidth="1.5"><path d="M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M4 12V8"/><path d="M4 16v-2"/><path d="M4 20v-2"/><path d="M8 12v4"/><path d="M8 20v-2"/><path d="M12 12v6"/><path d="M16 12v8"/></svg> 
-                        },
-                        { 
-                            title: 'Smart Scheduling', 
-                            desc: 'IoT sensors trigger dynamic pickups.', 
-                            longDesc: 'Using IoT-enabled bin sensors and smart data analytics, we optimize collection routes. Dynamic scheduling ensures that bins are picked up exactly when full, reducing unnecessary fuel consumption and carbon footprint.',
-                            left: '16.6%', top: '56.4%', 
-                            icon: <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#008447" strokeWidth="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> 
-                        },
-                        { 
-                            title: 'Hygienic Transport', 
-                            desc: 'GPS-tracked, leak-proof vehicles.', 
-                            longDesc: 'Our fleet of modern, leak-proof vehicles ensures that waste is transported without odors or spills. Every vehicle is GPS-tracked, providing real-time visibility and ensuring timely deliveries to our processing hubs.',
-                            left: '22.6%', top: '83.4%', 
-                            icon: <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#008447" strokeWidth="1.5"><path d="M5 13l4 4L19 7"/></svg> 
-                        },
-                        { 
-                            title: 'Quality Validation', 
-                            desc: 'Moisture & contamination checks.', 
-                            longDesc: 'Upon arrival at our Biorak hubs, every batch of waste undergoes strict quality checks. We validate moisture content, purity, and organic composition to ensure it meets our high standards for BSF cultivation.',
-                            left: '71.3%', top: '20.3%', 
-                            icon: <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#008447" strokeWidth="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> 
-                        },
-                        { 
-                            title: 'Decontamination', 
-                            desc: 'Odor control & safe handling.', 
-                            longDesc: 'Safety is paramount. We employ advanced decontamination protocols including odor neutralizing and safe handling techniques to maintain a clean environment, ensuring the waste is ready for the next phase of value creation.',
-                            left: '83.3%', top: '56.4%', 
-                            icon: <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#008447" strokeWidth="1.5"><path d="M7 20h10"/><path d="M10 20v-5L6 7V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v3l-4 8v5"/><path d="M8 12h8"/><path d="M12 9v1"/></svg> 
-                        },
-                        { 
-                            title: 'Zero Waste Value', 
-                            desc: 'Converted to premium BSF protein.', 
-                            longDesc: 'The final stage involves converting waste into premium Black Soldier Fly (BSF) protein and frass compost. This circular economy model ensures that 100% of the organic waste is repurposed back into the food chain.',
-                            left: '77.2%', top: '83.4%', 
-                            icon: <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#008447" strokeWidth="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg> 
-                        },
-                    ].map((node, i) => (
-                        <motion.div 
-                            key={i} 
-                            className="radial-node" 
-                            style={{ top: node.top, left: node.left, cursor: 'pointer' }}
-                            onClick={() => setSelectedNode(node)}
-                        >
-                            <div className="radial-icon-box" style={{ 
-                                transition: 'all 0.3s ease',
-                                boxShadow: '0 5px 15px rgba(0,0,0,0.05)'
-                            }}>{node.icon}</div>
-                            <div style={{ fontWeight: '800', color: '#004225', marginBottom: '0.4rem', fontSize: '1rem', lineHeight: 1.2 }}>{node.title}</div>
-                            <div style={{ color: '#666', fontSize: '0.85rem', lineHeight: 1.4 }}>{node.desc}</div>
-                            <div style={{ marginTop: '0.5rem', color: '#008447', fontSize: '0.75rem', fontWeight: 'bold' }}>Click to learn more →</div>
-                        </motion.div>
-                    ))}
-                </div>
-
-                {/* Mobile version */}
-                <div className="radial-mobile-only" style={{ maxWidth: '600px', margin: '0 auto', padding: '0 20px' }}>
-                    <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-                        <img src={ecoGlobe} style={{ width: '250px', height: '250px', borderRadius: '50%', objectFit: 'cover' }} alt="Sustainability Globe" />
-                    </div>
-                    {[
-                        { title: 'Source Identification', desc: 'Secure onboarding & certified bins.', longDesc: 'Our process begins with identifying high-quality organic waste sources. We provide specialized bins and onboarding training for partners to ensure proper segregation at the source, preventing contamination early on.', icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#008447" strokeWidth="1.5"><path d="M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M4 12V8"/><path d="M4 16v-2"/><path d="M4 20v-2"/><path d="M8 12v4"/><path d="M8 20v-2"/><path d="M12 12v6"/><path d="M16 12v8"/></svg> },
-                        { title: 'Smart Scheduling', desc: 'IoT sensors trigger dynamic pickups.', longDesc: 'Using IoT-enabled bin sensors and smart data analytics, we optimize collection routes. Dynamic scheduling ensures that bins are picked up exactly when full, reducing unnecessary fuel consumption and carbon footprint.', icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#008447" strokeWidth="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> },
-                        { title: 'Hygienic Transport', desc: 'GPS-tracked, leak-proof vehicles.', longDesc: 'Our fleet of modern, leak-proof vehicles ensures that waste is transported without odors or spills. Every vehicle is GPS-tracked, providing real-time visibility and ensuring timely deliveries to our processing hubs.', icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#008447" strokeWidth="1.5"><path d="M5 13l4 4L19 7"/></svg> },
-                        { title: 'Quality Validation', desc: 'Moisture & contamination checks.', longDesc: 'Upon arrival at our Biorak hubs, every batch of waste undergoes strict quality checks. We validate moisture content, purity, and organic composition to ensure it meets our high standards for BSF cultivation.', icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#008447" strokeWidth="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> },
-                        { title: 'Decontamination', desc: 'Odor control & safe handling.', longDesc: 'Safety is paramount. We employ advanced decontamination protocols including odor neutralizing and safe handling techniques to maintain a clean environment, ensuring the waste is ready for the next phase of value creation.', icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#008447" strokeWidth="1.5"><path d="M7 20h10"/><path d="M10 20v-5L6 7V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v3l-4 8v5"/><path d="M8 12h8"/><path d="M12 9v1"/></svg> },
-                        { title: 'Zero Waste Value', desc: 'Converted to premium BSF protein.', longDesc: 'The final stage involves converting waste into premium Black Soldier Fly (BSF) protein and frass compost. This circular economy model ensures that 100% of the organic waste is repurposed back into the food chain.', icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#008447" strokeWidth="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg> }
-                    ].map((node, i) => (
-                        <div key={i} style={{ padding: '1.5rem', borderBottom: '1px solid #eee', display: 'flex', alignItems: 'center', gap: '1.5rem', cursor: 'pointer' }} onClick={() => setSelectedNode(node)}>
-                            <div style={{ width: '60px', height: '60px', border: '1px dashed #666', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                                {node.icon}
-                            </div>
-                            <div>
-                                <h4 style={{ color: '#004225', fontWeight: '800', margin: '0 0 0.3rem 0' }}>{node.title}</h4>
-                                <p style={{ color: '#666', fontSize: '0.85rem', margin: '0 0 0.5rem 0', lineHeight: 1.4 }}>{node.desc}</p>
-                                <span style={{ color: '#008447', fontSize: '0.75rem', fontWeight: 'bold' }}>Tap to learn more →</span>
+                    <div className="radial-mobile-only" style={{ maxWidth: '450px', margin: '0 auto', padding: '0 15px', position: 'relative' }}>
+                        <div style={{ textAlign: 'center', marginBottom: '4rem', marginTop: '2rem' }}>
+                            <div style={{ position: 'relative', display: 'inline-block' }}>
+                                {/* Multi-layered glow for premium feel */}
+                                <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '130%', height: '130%', background: 'radial-gradient(circle, rgba(0,132,71,0.15) 0%, transparent 70%)', filter: 'blur(30px)', zIndex: -1 }}></div>
+                                <div style={{ position: 'absolute', top: '55%', left: '50%', transform: 'translate(-50%, -50%)', width: '80%', height: '80%', background: 'radial-gradient(circle, rgba(0,132,71,0.1) 0%, transparent 60%)', filter: 'blur(15px)', zIndex: -1 }}></div>
+                                {/* Hovering Fly with Animation */}
+                                <motion.div
+                                    animate={{ 
+                                        y: [0, -10, 0],
+                                    }}
+                                    transition={{
+                                        duration: 4,
+                                        repeat: Infinity,
+                                        ease: "easeInOut"
+                                    }}
+                                >
+                                    <img src={bsfFly} style={{ width: '280px', height: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.1))' }} alt="Black Soldier Fly" />
+                                </motion.div>
                             </div>
                         </div>
-                    ))}
+                        
+                        <div style={{ position: 'relative', padding: '1rem 0' }}>
+                            <div className="zig-zag-line" />
+                            {[
+                                { title: 'Suitable Waste Selection', desc: 'Ideal organic inputs.', longDesc: 'Our process begins by sourcing high-quality organic matter. Kitchen waste, vegetable market scraps, and fruit peels are ideal. We strictly avoid overly oily or fatty substances to ensure optimal larval health and growth rates.', icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#008447" strokeWidth="1.5"><path d="M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M4 12V8"/><path d="M4 16v-2"/><path d="M4 20v-2"/><path d="M8 12v4"/><path d="M8 20v-2"/><path d="M12 12v6"/><path d="M16 12v8"/></svg> },
+                                { title: 'Mechanical Shredding', desc: 'Substrate uniformity.', longDesc: 'Upon arrival, waste is shredded into small, uniform particles using industrial hammermills. This mechanical pre-processing maximizes the surface area, facilitating faster and more efficient feeding by the larval colonies.', icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#008447" strokeWidth="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> },
+                                { title: 'Moisture Management', desc: 'Optimizing digestion.', longDesc: 'Very wet waste (like fruit scraps) is allowed to drain or is mixed with dry additives for 1-2 days. This ensures proper moisture levels (60-70%), which are critical for the larvae to thrive during the conversion phase.', icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#008447" strokeWidth="1.5"><path d="M7 20h10"/><path d="M10 20v-5L6 7V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v3l-4 8v5"/><path d="M8 12h8"/><path d="M12 9v1"/></svg> },
+                                { title: 'Storage & Bio-Feeding', desc: 'High-protein value.', longDesc: 'The final stage involves feeding the prepared substrate to BSF larva colonies. Our system can reduce total waste volume by up to 90% in just two weeks, transforming "trash" into premium protein and organic fertilizer.', icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#008447" strokeWidth="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg> }
+                            ].map((node, i) => (
+                                <motion.div 
+                                    key={i} 
+                                    initial={{ opacity: 0, x: i % 2 === 0 ? -20 : 20 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    className="mobile-timeline-card" 
+                                    style={{ 
+                                        width: '85%', 
+                                        marginLeft: i % 2 === 0 ? '0' : 'auto',
+                                        marginBottom: '2.5rem'
+                                    }} 
+                                    onClick={() => setSelectedNode(node)}
+                                >
+                                    <div className="mobile-icon-wrapper">
+                                        {node.icon}
+                                    </div>
+                                    <h4 style={{ color: '#004225', fontWeight: '800', fontSize: '1.05rem', margin: '0 0 0.2rem 0' }}>{node.title}</h4>
+                                    <p style={{ color: '#666', fontSize: '0.8rem', margin: '0 0 0.4rem 0' }}>{node.desc}</p>
+                                    <div style={{ color: '#008447', fontSize: '0.7rem', fontWeight: 'bold' }}>View Details →</div>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
 
                 {/* Footer Banner */}
-                <div style={{ display: 'flex', justifyContent: 'center', margin: '4rem auto 0', position: 'relative', zIndex: 10, maxWidth: '800px' }}>
+                <div className="radial-desktop-only flex-container" style={{ justifyContent: 'center', margin: '4rem auto 0', position: 'relative', zIndex: 10, maxWidth: '800px' }}>
                     <div style={{ 
                         border: '1px solid #008447', 
                         borderRadius: '0.5rem', 

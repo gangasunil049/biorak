@@ -112,11 +112,13 @@ const Home = () => {
                         position: 'relative',
                         zIndex: 20,
                         display: 'flex',
-                        gap: isMobile ? '0.8rem' : '1.5rem',
+                        flexDirection: isMobile ? 'column' : 'row',
+                        gap: isMobile ? '1rem' : '1.5rem',
                         justifyContent: 'center',
                         alignItems: 'center',
-                        marginBottom: isMobile ? '1.5rem' : '2.5rem', // Increased margin to push image down
-                        marginTop: isMobile ? '0.5rem' : '1rem'   // Increased margin from heading
+                        width: isMobile ? '100%' : 'auto',
+                        marginBottom: isMobile ? '1.5rem' : '2.5rem', 
+                        marginTop: isMobile ? '1rem' : '1.5rem'
                     }}
                 >
                     <button
@@ -125,14 +127,16 @@ const Home = () => {
                             background: '#006b3c',
                             color: 'white',
                             border: 'none',
-                            padding: isMobile ? '0.6rem 1.2rem' : '0.9rem 2.22rem',
+                            padding: isMobile ? '0.8rem 2rem' : '0.9rem 2.22rem',
                             borderRadius: '9999px',
                             fontWeight: '700',
-                            fontSize: isMobile ? '0.85rem' : '1.05rem',
+                            fontSize: isMobile ? '0.9rem' : '1.05rem',
                             cursor: 'pointer',
                             display: 'flex',
                             alignItems: 'center',
+                            justifyContent: 'center',
                             gap: '0.6rem',
+                            minWidth: isMobile ? '220px' : 'auto',
                             boxShadow: '0 8px 30px rgba(0,107,60,0.3)',
                             transition: 'transform 0.2s ease'
                         }}
@@ -147,11 +151,12 @@ const Home = () => {
                             background: 'white',
                             color: '#006b3c',
                             border: '2px solid #006b3c',
-                            padding: isMobile ? '0.6rem 1.2rem' : '0.9rem 2.2rem',
+                            padding: isMobile ? '0.8rem 2rem' : '0.9rem 2.2rem',
                             borderRadius: '9999px',
                             fontWeight: '700',
-                            fontSize: isMobile ? '0.85rem' : '1.05rem',
+                            fontSize: isMobile ? '0.9rem' : '1.05rem',
                             cursor: 'pointer',
+                            minWidth: isMobile ? '220px' : 'auto',
                             transition: 'all 0.2s ease',
                             boxShadow: '0 8px 20px rgba(0,0,0,0.05)'
                         }}

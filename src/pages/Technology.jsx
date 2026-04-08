@@ -173,7 +173,7 @@ const cardHover = {
     transition: { duration: 0.3, ease: "easeOut" }
 };
 
-const ZOEM_INTRO = "This system features an advanced vertical rack-based design that enables efficient and scalable Black Soldier Fly farming, transforming organic waste into high-value protein and nutrient-rich organic fertilizer.";
+const TECH_INTRO = "This system features an advanced vertical rack-based design that enables efficient and scalable Black Soldier Fly farming, transforming organic waste into high-value protein and nutrient-rich organic fertilizer.";
 
 const sectionBgStyle = {
     position: 'relative',
@@ -205,8 +205,8 @@ const AUTOMATION_SUITE = [
         image: wasteImg
     },
     {
-        title: 'ZOEM Filler',
-        desc: 'Robotic system deposits uniform substrate layers (5-10 cm deep) across multiple racks, handling viscous wastes like food scraps or manure.',
+        title: 'BIORAK Filler',
+        desc: 'Advanced automated system deposits uniform substrate layers (5-10 cm deep) across multiple racks, handling diverse organic waste streams with precision robotic control.',
         icon: <Settings className="w-8 h-8" />,
         image: fillerImg
     },
@@ -333,7 +333,7 @@ const Technology = () => {
                                 className="tech-hero-desc"
                                 style={{ fontSize: '1.25rem', color: '#000000', lineHeight: 1.6, marginBottom: '2.5rem' }}
                             >
-                                {ZOEM_INTRO}
+                                {TECH_INTRO}
                             </motion.p>
                             <motion.div variants={fadeInUp}>
                                 <button 
@@ -356,7 +356,7 @@ const Technology = () => {
                             <div className="tech-image-border"></div>
                             <img 
                                 src={rackHero} 
-                                alt="ZOEM Technology" 
+                                alt="BIORAK Technology" 
                                 style={{ width: '100%', borderRadius: '2rem', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.15)', position: 'relative', zIndex: 1, objectFit: 'cover' }} 
                             />
                         </motion.div>
